@@ -16,7 +16,7 @@ class PaymentMode(models.Model):
                    ('C', 'Cheque bancario')])
 
     is_conf_bankia = fields.Boolean(compute="_compute_is_conf_bankia")
-    bankia_customer_reference = fields.Char(size=10)
+    bankia_customer_reference = fields.Char('Referencia cliente bankia')
 
     @api.multi
     @api.depends('type')
