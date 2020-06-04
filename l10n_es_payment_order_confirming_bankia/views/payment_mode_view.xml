@@ -9,6 +9,7 @@
                 <group position="after">
                     <group string="Opciones Confirming" attrs="{'invisible': [('is_conf_bankia', '=', False)]}">
                         <field name="conf_bankia_type"/>
+                        <field name="bankia_customer_reference"/>
                         <field name="is_conf_bankia" invisible="1"/>
                     </group>
                 </group>
