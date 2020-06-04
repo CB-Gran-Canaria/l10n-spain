@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_payment_order_form_add_postfinancial_date" model="ir.ui.view">
+            <field name="name">Payment mode form (Confirming Bankia)</field>
+            <field name="model">payment.order</field>
+            <field name="inherit_id" ref="account_payment.view_payment_order_form"/>
+            <field name="arch" type="xml">
+                <field name="date_scheduled" position="after">
+                    <field name="post_financing_date"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

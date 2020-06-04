@@ -145,14 +145,9 @@ class ConfirmingBankia(object):
         text += self.converter.convert(line.name, 15)
         # 61-68 Fecha de post-financiación OPTATIVO
         date = 8 * ' '
-        if self.order.date_prefered == 'fixed':
-            if not self.order.date_scheduled:
-                raise Log(_('Necesitas una fecha fija como fecha de postfinanciación'))
-            date  = fields.Date.from_string(self.order.date_scheduled).strftime('%Y%m%d').ljust(8)
-        elif self.order.date_prefered == 'now':
-            date = time.strftime('%Y%m%d')
-        elif self.order.date_prefered == 'due':
-            date = fields.Date.from_string(self.order.line_ids[0].ml_maturity_date).strftime('%Y%m%d') or time.strftime('%Y%m%d')
+        if not self.order.post_financing_date:
+            raise Log(_('Necesitas establecer la fecha de postfinanciación'))
+        date  = fields.Date.from_string(self.order.post_financing_date).strftime('%Y%m%d').ljust(8)
         text += date
         # 69-73 Sin uso
         text += ''.ljust(5)

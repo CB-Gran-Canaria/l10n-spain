@@ -20,6 +20,7 @@
     'data': [
         'data/payment_type_data.xml',
         'views/payment_mode_view.xml',
+        'views/payment_order_view.xml',
     ],
     'installable': True,
 }
