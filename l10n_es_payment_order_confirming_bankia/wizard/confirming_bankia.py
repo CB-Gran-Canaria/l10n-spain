@@ -181,6 +181,8 @@ class ConfirmingBankia(object):
         text += ''.ljust(20)
         # 158-182 Número de cuenta en formato CCC
         text += line.bank_id.acc_number[4:].replace(' ', '')
+        if not line.bank_id.acc_number:
+            raise Log(_('No hay cuenta bancaria en la linea {}'.format(line.communication)))
         return text + '\r\n'
 
     def _ban_cola(self, line_counter):
