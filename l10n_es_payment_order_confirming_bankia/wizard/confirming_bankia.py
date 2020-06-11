@@ -180,6 +180,8 @@ class ConfirmingBankia(object):
         # 138-157 Solo para 137=C
         text += ''.ljust(20)
         # 158-182 Número de cuenta en formato CCC
+        if not line.bank_id.acc_number:
+            raise Log(_('No hay cuenta bancaria en la linea {}'.format(line.communication)))
         text += line.bank_id.acc_number[4:].replace(' ', '')
         return text + '\r\n'
 

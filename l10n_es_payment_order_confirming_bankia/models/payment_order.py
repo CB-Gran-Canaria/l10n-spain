@@ -10,3 +10,15 @@ class PaymentOrder(models.Model):
     _inherit = "payment.order"
     
     post_financing_date = fields.Date('Fecha post-financiación')
+
+    @api.multi
+    def write(self, vals):
+        res = super(PaymentOrder, self).write(vals)
+        if vals.get('state', False) and vals['state'] == 'cancel': 
+            domain = [
+                ('res_id', 'in', self._ids),
+                ('res_model', '=', 'payment.order')]
+            atts = self.env['ir.attachment'].search(domain)
+            if atts:
+                atts.unlink()
+        return res
